@@ -3,25 +3,25 @@ use strict;
 
 =head1 PROGRAM
 
-C<blip> - Blocks and unblocks IPs using C<iptables>.
+C<blip.pl> - Blocks and unblocks IPs using C<iptables>.
 
 =head2 Usage Examples
 
 Using the Unix iptables can be confusing, blip is a simple interface 
 that un/blocks IPs and put them in a designated chain.
 
- ./blip -block 114.80.97.88
- ./blip -unblock 114.80.97.88
+ ./blip.pl -block 114.80.97.88
+ ./blip.pl -unblock 114.80.97.88
 
 You can pass to it multiple IPs by separating them with commas.
 
 List the blocked IPs:
 
- ./blip -list
+ ./blip.pl -list
 
 When you're tired of it all:
 
- ./blip -wipe
+ ./blip.pl -wipe
 
 =head2 Options
 
@@ -41,9 +41,9 @@ Chain or target to add IPs to. Defaults to C<BLIP>.
 
 use vars qw/$BLIP/;
 
-use constant HELP => qq{blip v1.0 - Block IP
- ./blip -[un]block <ip-address> -verbose
- ./blip -[wipe|list]
+use constant HELP => qq{blip.pl v1.0.1 - Block IP
+ ./blip.pl -[un]block <ip-address> -verbose
+ ./blip.pl -[wipe|list]
 };
 
 die HELP unless scalar @ARGV;
@@ -280,7 +280,12 @@ sub _printf {
 
 =head1 HISTORY
 
-20120314 - v1.0 - Created.
+20120314 - v1.0 - Created. 
+
+v1.0.1 - Remove C<README>. 
+Link C<README.pod> to C<blip.pl>.
+Change C<blip> to C<blip.pl>.
+Adds C<-chain> option so user chan specify which C<chain/target> to use.
 
 =head1 AUTHOR
 
