@@ -291,6 +291,13 @@ Adds C<-chain> option so user chan specify which C<chain/target> to use.
 
 This module by Paul Pham.
 
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2012 by Paul Pham
+
+This program and library is free software;
+you can redistribute it and/or modify it under the same terms as Perl itself.
+
 =cut
 
 1;
