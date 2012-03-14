@@ -1,0 +1,14 @@
+Using the Unix iptables can be confusing, blip is a simple interface that un/blocks IPs and put them in a designated chain.
+
+./blip -block 114.80.97.88
+./blip -unblock 114.80.97.88
+
+You can pass to it multiple IPs by separating them with commas.
+
+List the blocked IPs:
+
+./blip -list
+
+When you're tired of it all:
+
+./blip -wipe
