@@ -41,7 +41,7 @@ Chain or target to add IPs to. Defaults to C<BLIP>.
 
 use vars qw/$BLIP/;
 
-use constant HELP => qq{blip.pl v1.0.1 - Block IP
+use constant HELP => qq{blip.pl v1.1 - Block IP
  ./blip.pl -[un]block <ip-address> -verbose
  ./blip.pl -[wipe|list]
 };
