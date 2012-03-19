@@ -125,7 +125,12 @@ sub commands {
 		my @ips = split ',', $self->{-block};
 		map { $self->block($_) } @ips;
 	} elsif ($self->{-wipe}) {
-		my $cmd = sprintf "%s -X %s",
+		my $cmd = sprintf "%s -D INPUT -j %s",
+			$self->{-bin}, $self->{-chain};
+	
+		$self->_execute($cmd) and
+			die "ERROR: unchain $cmd\n";
+		$cmd = sprintf "%s -X %s",
 			$self->{-bin}, $self->{-chain};
 
 		$self->_printf(1,"Removing chain %s\n", $self->{-chain});
@@ -223,7 +228,7 @@ sub _get_ips {
 
 =head3 _create_chain (I<void>)
 
-Creates a new C<chain> for these IPs.
+Creates a new C<chain> and chain this to C<INPUT>.
 
 =cut
 
@@ -234,6 +239,12 @@ sub _create_chain {
 	$self->_printf(1, "$cmd\n");
 
 	my $info = $self->_execute($cmd);
+	$info and die "ABORT: $cmd failed ($info)\n";
+
+	$cmd = sprintf "%s -A INPUT -j %s", 
+		$self->{-bin}, $self->{-chain};
+
+	$info = $self->_execute($cmd);
 	$info and die "ABORT: $cmd failed ($info)\n";
 }
 
@@ -286,6 +297,8 @@ v1.0.1 - Remove C<README>.
 Link C<README.pod> to C<blip.pl>.
 Change C<blip> to C<blip.pl>.
 Adds C<-chain> option so user chan specify which C<chain/target> to use.
+
+v1.1 - Add chaining to C<INPUT> for this thing to actually do the blocking. Oops.
 
 =head1 AUTHOR
 
